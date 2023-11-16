@@ -24,10 +24,34 @@ dist folder -> parcel will pack all the code inside a package and takes care it 
 
 
 npm install -D parcel -> -D will add the dependancies in development environment only (npm install dependancy_name will install and use the common dependancies in both development and production environment )
-npx -> command to unpack any installed package
+npx -> command to execute installed node module
 npx  parcel index.html -> packe the code and deploy the file on the development server(hosting an application on server)
 
 npx parcel build index.html -> will create a productions ready build (only core files of the application)
     dist\index.html                339 B    1.35s
     dist\index.c9074835.js     139.19 KB    734ms
     dist\index.1e2b8b93.css         65 B     60ms
+
+# package.json
+   
+    "scripts": {
+    "start" : "parcel index.html",  -> to start the project in development (reserved keyword for npm to start something) 
+    "build" : "parcel build index.html",  -> to build production package
+    "test": "jest"
+  }
+
+  PS C:\Users\Ritesh J\OneDrive\Desktop\React-brushUp November 2023> npm start
+
+    > react@1.0.0 start
+    > parcel index.html
+
+    Server running at http://localhost:1234
+    ✨ Built in 1.30s
+
+
+  "browserlist":[       => For support older browser
+    "last 2 versions",
+    "fully supports es6"
+  ]
+==================================================================================================================================
+React
