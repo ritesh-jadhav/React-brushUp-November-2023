@@ -1,0 +1,33 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "React ",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ritesh-jadhav/React-brushUp-November-2023.git"
+  },
+  "keywords": [
+    "react",
+    "18"
+  ],
+  "author": "Ritesh Jadhav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ritesh-jadhav/React-brushUp-November-2023/issues"
+  },
+  "homepage": "https://github.com/ritesh-jadhav/React-brushUp-November-2023#readme",
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "browserlist":[
+    "last 2 versions",
+    "fully supports es6"
+  ]
+    
+}

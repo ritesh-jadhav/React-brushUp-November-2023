@@ -1,0 +1,33 @@
+npm -> Something that manage the dependancies
+
+
+parcel -> buddler that will wrap up all the things and take that packed pakages towards the production 
+
+# Parcel - A Beast 
+    - Dev build
+    - local development server 
+    - HMR = Hot module replacement
+    - uses File waching algorithm written for latest build in c++ 
+    - Caching - Faster build (Reduces build time)
+    - Tree Shaking - remove unused code
+    - Image optimization 
+    - compress file and optimize Bundle by removing whitespaces of all js code  
+    - Code splitting
+    - Consistent hashing 
+    - Differential bundle (support for older browsers)
+    - Beautify errors and gives diagostic of the app 
+
+
+dist folder -> parcel will pack all the code inside a package and takes care it should be delivered to the development server
+.parce-cache -> cache will used to reduce the build time (time gets reduce as the number of times builds)
+
+
+
+npm install -D parcel -> -D will add the dependancies in development environment only (npm install dependancy_name will install and use the common dependancies in both development and production environment )
+npx -> command to unpack any installed package
+npx  parcel index.html -> packe the code and deploy the file on the development server(hosting an application on server)
+
+npx parcel build index.html -> will create a productions ready build (only core files of the application)
+    dist\index.html                339 B    1.35s
+    dist\index.c9074835.js     139.19 KB    734ms
+    dist\index.1e2b8b93.css         65 B     60ms
