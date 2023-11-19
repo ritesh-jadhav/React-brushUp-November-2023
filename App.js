@@ -1320,7 +1320,7 @@ const Body = () => {
         <input id="search-box" type="search" placeholder="Explore kitchens" />
       </div>
       <div className="card-container">
-        {data.map(restro => <Card name={restro.info.name} avgRating={restro.info.avgRating} cloudinaryImageId={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+restro.info.cloudinaryImageId} />)}
+        {data.map(restro => <Card key={restro.info.id} name={restro.info.name} avgRating={restro.info.avgRating} cloudinaryImageId={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+restro.info.cloudinaryImageId} />)}
       </div>
     </div>
   );
