@@ -54,4 +54,5 @@ npx parcel build index.html -> will create a productions ready build (only core 
     "fully supports es6"
   ]
 ==================================================================================================================================
-React
+Config Driven UI :: UI is designed in such a way that it should be configured bby the data that backend is sending.
+e.g. Different zone have different offers,different cursoal,and the offers....UI can be modified based on what data we configured
