@@ -1,3 +1,31 @@
+React.createElement => object => HtmlElement(render)
+
+const heading = React.createElement("h1",{id: "heading"},"React element");
+
+// JSX - Html-likely syntax that understand by JS engine  
+// JSX => babel transpile it to React.createElement => ReactElement-JS Object => htmlElement(reder)
+
+const jsxHeading = <h1 id="heading">React JSX element</h1>
+
+const content = <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi labore nisi nobis eligendi illo ea et, dolorem voluptatum alias tempora repellat corrupti numquam officiis ipsam aliquid natus nemo dignissimos tenetur.</p>
+
+// Functional Components 
+
+const about = function (){
+    return <h1>This is a functional component</h1>
+}
+
+const BrandTitle = () =>{
+    return <div className="container">
+        {about()}
+        <h1 id="heading">React functional Component</h1>
+        {content}
+        {jsxHeading}
+    </div>
+}
+
+
+
 npm -> Something that manage the dependancies
 
 
@@ -56,3 +84,11 @@ npx parcel build index.html -> will create a productions ready build (only core 
 ==================================================================================================================================
 Config Driven UI :: UI is designed in such a way that it should be configured bby the data that backend is sending.
 e.g. Different zone have different offers,different cursoal,and the offers....UI can be modified based on what data we configured
+
+2 ways of export 
+  -default export -> at the end of file export default module_name_or_variable;
+  -named export -> recommended to use when we have to export more than one (at the time of immport destructure and use)
+  e.g. 
+  
+  export const swiggyCdn = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"; //constants.js file
+  import { swiggyCdn } from "../utils/constants"; // another.js file
