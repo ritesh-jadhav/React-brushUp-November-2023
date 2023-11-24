@@ -1,12 +1,36 @@
 import dummyData from "../utils/mockData";
 import { swiggyCdn } from "../utils/constants";
 import Card from "./Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
-  const [resturantList, setRestaurantList] = useState(dummyData);
+  const [resturantList, setRestaurantList] = useState([]);
 
-  console.log(resturantList);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const apiData = await fetch(
+      "https://www.swiggy.com/mapi/homepage/getCards?lat=19.0726295&lng=72.8844721"
+    );
+
+    if (!apiData.ok) {
+      console.log("api gives status", apiData.status);
+    }
+    const jsonData = await apiData.json();
+
+    setRestaurantList(
+      jsonData.data.success.cards[1].gridWidget.gridElements.infoWithStyle
+        .restaurants
+    );
+  };
+
+  if (resturantList.length === 0) {
+    return <Shimmer />;
+  }
+
   return (
     <div className="rest-container">
       <div className="search">
@@ -15,9 +39,12 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
+            console.log("Before", resturantList);
             const filteredList = resturantList.filter(
-              (restro) => restro.info.avgRating > 4.3
+              (restro) => restro?.info?.avgRating > 4.2
             );
+            console.log("filtered restro ", filteredList);
+            setRestaurantList(filteredList);
           }}
         >
           Filter
@@ -26,10 +53,10 @@ const Body = () => {
       <div className="card-container">
         {resturantList.map((restro) => (
           <Card
-            key={restro.info.id}
-            name={restro.info.name}
-            avgRating={restro.info.avgRating}
-            cloudinaryImageId={swiggyCdn + restro.info.cloudinaryImageId}
+            key={restro.info?.id}
+            name={restro?.info?.name}
+            avgRating={restro?.info?.avgRating}
+            cloudinaryImageId={swiggyCdn + restro?.info?.cloudinaryImageId}
           />
         ))}
       </div>

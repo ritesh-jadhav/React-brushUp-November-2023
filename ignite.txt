@@ -92,3 +92,52 @@ e.g. Different zone have different offers,different cursoal,and the offers....UI
   
   export const swiggyCdn = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"; //constants.js file
   import { swiggyCdn } from "../utils/constants"; // another.js file
+
+  =================================================================================================================================
+
+
+  React is faster because of the virtual dom actually for the first time when page gest loaded browser will keep the presentation of all the 
+  html nodes in json or xml format. React additionally having its virtual dom and whenever any changes react virtual dom will recognise the 
+  changes and updates UI accordingly. react is very fast to manage the DOM manupualtion.
+  React reconciliation is nothing but the diff. algorithm that can detect the changes betn old and updated DOM re-render the component. ->same thing known as React fiber in version 16 
+  React/angular and other UI framwork is meant up for config driven UI so anything changes at the data layer it can be replicated on UI fastly 
+  Data layer and UI is synced and react manages the dom efficiently that makes react much more faster.
+
+============================================================================================================================================
+Hooks : hooks are at the end of day are javascript utility functions provided by React developers to enchance the superpowers of react.
+useState() => A superpowerful state variable
+Whenever state changes of that variable inside a component react will re-render that component using virtual dom.
+
+import { useState } from "react";
+
+
+const [list, setList] = useState(default_value_for_state_variable);
+
+
+equivalent to =>
+const ele1 = arr[0];
+const ele1 = arr[1];
+const test = [arr[0],arr[1]]
+const {{arr[0]} ,arr[1] }  // destructuring on the fly
+
+=========================================================================================================
+
+
+Monlithic Vs. Microservices Application
+
+Monolithic -> all the ui,api,db and the services are packed isnide one project and deployed to the internet.
+Microservices -> Each service is written as a different project and all combines together to form an application. its also known Seperation of concerns and it follows 
+single responsibilty principal and each service has its own job.
+
+Rendering a component  ->
+  - useEffect() is a js utility function and re- render the react component.
+  - useEffect(){ ()=>{}, [] }  
+  two args - 1. callback function : that will called by useEffect() .
+           - 2. [] dependancies array : whenever the list of dependancy chanages callback will be called.
+
+Two ways to api call 
+1. as soon as page loads -> call api -> wait for the response for getting content and render the UI.
+2. Render the Ui whatever we have ->  api call -> data -> re-render the UI. //gives better UX 
+
+Shimmer UI -> show skelton while loading the page 
+

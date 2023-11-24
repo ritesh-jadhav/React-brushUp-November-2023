@@ -3,10 +3,10 @@ const Card = ({ name, avgRating, cloudinaryImageId }) => {
     <div className="card">
       <div className="card-title">{name}</div>
       <div className="card-image">
-        <img src={cloudinaryImageId} />
+        <img className="food-img" src={cloudinaryImageId} />
       </div>
       <div className="card-rating">
-        <h6>{avgRating}</h6>
+        <h6>Rating ::{avgRating}</h6>
       </div>
       <div className="card-caption">
         <p>
