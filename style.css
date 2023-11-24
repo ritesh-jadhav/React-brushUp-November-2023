@@ -46,6 +46,12 @@
   padding: 10px;
 
 }
+.login-btn{
+  padding: 5px; ;
+  margin: 5px;
+  background-color: aliceblue;
+  color: brown;
+}
 
 .shimmer-container{
   display: flex;

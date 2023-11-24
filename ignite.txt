@@ -105,8 +105,13 @@ e.g. Different zone have different offers,different cursoal,and the offers....UI
 
 ============================================================================================================================================
 Hooks : hooks are at the end of day are javascript utility functions provided by React developers to enchance the superpowers of react.
+
 useState() => A superpowerful state variable
 Whenever state changes of that variable inside a component react will re-render that component using virtual dom.
+
+
+Normal javascript can't make a component dynamic and can't change the content once page gets loaded. To make component dynamic and capable of
+showing updated values on Ui quickly by renrendering the component react introduced state variable.  
 
 import { useState } from "react";
 
@@ -119,6 +124,13 @@ const ele1 = arr[0];
 const ele1 = arr[1];
 const test = [arr[0],arr[1]]
 const {{arr[0]} ,arr[1] }  // destructuring on the fly
+
+How useEffect() will update the const variable or state ??
+
+const [varaibleName, setVaribleName] = useEffect(default_value_for_const_variable)
+varaibleName => name for the constant variable
+setVaribleName => callback function provided by react and that will update the value process component to be re-render with updated value. 
+
 
 =========================================================================================================
 
@@ -140,4 +152,8 @@ Two ways to api call
 2. Render the Ui whatever we have ->  api call -> data -> re-render the UI. //gives better UX 
 
 Shimmer UI -> show skelton while loading the page 
+
+Conditional rerendering => rendering a component based on specific condition 
+
+=======================================================================================================================
 

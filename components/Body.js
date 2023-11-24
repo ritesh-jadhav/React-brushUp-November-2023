@@ -27,11 +27,10 @@ const Body = () => {
     );
   };
 
-  if (resturantList.length === 0) {
-    return <Shimmer />;
-  }
 
-  return (
+  return resturantList.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="rest-container">
       <div className="search">
         <label htmlFor="search-box">Search </label>
