@@ -6,7 +6,11 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [resturantList, setRestaurantList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
+  const [searchText, setSearchText] = useState("");
+
+  console.log("Body rendered");
   useEffect(() => {
     fetchData();
   }, []);
@@ -25,8 +29,11 @@ const Body = () => {
       jsonData.data.success.cards[1].gridWidget.gridElements.infoWithStyle
         .restaurants
     );
+    setFilteredList(
+      jsonData.data.success.cards[1].gridWidget.gridElements.infoWithStyle
+        .restaurants
+    );
   };
-
 
   return resturantList.length === 0 ? (
     <Shimmer />
@@ -34,23 +41,43 @@ const Body = () => {
     <div className="rest-container">
       <div className="search">
         <label htmlFor="search-box">Search </label>
-        <input id="search-box" type="search" placeholder="Explore kitchens" />
+        <input
+          id="search-box"
+          type="text"
+          placeholder="Explore kitchens"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+        <button
+          type="button"
+          onClick={() => {
+            const searchList = resturantList.filter((restro) =>
+              restro.info.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+            setFilteredList(searchList);
+            console.log("restaruntList",resturantList);
+            console.log("Filteredlist",filteredList)
+          }}
+        >
+          search
+        </button>
         <button
           className="filter-btn"
           onClick={() => {
-            console.log("Before", resturantList);
             const filteredList = resturantList.filter(
               (restro) => restro?.info?.avgRating > 4.2
             );
             console.log("filtered restro ", filteredList);
-            setRestaurantList(filteredList);
+            setFilteredList(filteredList);
           }}
         >
           Filter
         </button>
       </div>
       <div className="card-container">
-        {resturantList.map((restro) => (
+        {filteredList.map((restro) => (
           <Card
             key={restro.info?.id}
             name={restro?.info?.name}

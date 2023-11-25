@@ -132,6 +132,8 @@ setVaribleName => callback function provided by react and that will update the v
 
 - Whenever state updates react will trigger reconciliation cycle(component re-rendering)
 
+- Why react is fast?
+reconciliation algorithm will make react faster an it detect the chanages of virtual dom and manipulate the dom operation efficiently.
 =========================================================================================================
 
 
