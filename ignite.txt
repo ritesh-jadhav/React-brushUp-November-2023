@@ -125,12 +125,12 @@ const ele1 = arr[1];
 const test = [arr[0],arr[1]]
 const {{arr[0]} ,arr[1] }  // destructuring on the fly
 
-How useEffect() will update the const variable or state ??
-
+- How useEffect() will update the const variable or state ??
 const [varaibleName, setVaribleName] = useEffect(default_value_for_const_variable)
 varaibleName => name for the constant variable
 setVaribleName => callback function provided by react and that will update the value process component to be re-render with updated value. 
 
+- Whenever state updates react will trigger reconciliation cycle(component re-rendering)
 
 =========================================================================================================
 
