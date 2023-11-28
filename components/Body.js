@@ -3,6 +3,7 @@ import { swiggyCdn } from "../utils/constants";
 import Card from "./Card";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [resturantList, setRestaurantList] = useState([]);
@@ -57,8 +58,8 @@ const Body = () => {
               restro.info.name.toLowerCase().includes(searchText.toLowerCase())
             );
             setFilteredList(searchList);
-            console.log("restaruntList",resturantList);
-            console.log("Filteredlist",filteredList)
+            console.log("restaruntList", resturantList);
+            console.log("Filteredlist", filteredList);
           }}
         >
           search
@@ -78,12 +79,13 @@ const Body = () => {
       </div>
       <div className="card-container">
         {filteredList.map((restro) => (
-          <Card
-            key={restro.info?.id}
-            name={restro?.info?.name}
-            avgRating={restro?.info?.avgRating}
-            cloudinaryImageId={swiggyCdn + restro?.info?.cloudinaryImageId}
-          />
+          <Link to={"/restaurant/" + restro.info?.id} key={restro.info?.id}>
+            <Card
+              name={restro?.info?.name}
+              avgRating={restro?.info?.avgRating}
+              cloudinaryImageId={swiggyCdn + restro?.info?.cloudinaryImageId}
+            />
+          </Link>
         ))}
       </div>
     </div>

@@ -149,6 +149,13 @@ Rendering a component  ->
   two args - 1. callback function : that will called by useEffect() .
            - 2. [] dependancies array : whenever the list of dependancy chanages callback will be called.
 
+ When useEffect is called
+ - default nature is to execute whenever redender and having 3 scenarios:
+ 
+ - without dependency array => useEffect(()=>{}) => will execute every time when component is rendered.
+ - with dependancy array =>  useEffect(()=>{},[]) => will execute on initial render(just once)
+ - with dependancy => useEffect(()=>{},[dependent]) => will execute on updation of dependent
+
 Two ways to api call 
 1. as soon as page loads -> call api -> wait for the response for getting content and render the UI.
 2. Render the Ui whatever we have ->  api call -> data -> re-render the UI. //gives better UX 
@@ -159,3 +166,95 @@ Conditional rerendering => rendering a component based on specific condition
 
 =======================================================================================================================
 
+
+
+routes -> requesting a resource 
+Routing => enables react to develope dynamic apllication by rendering a component based on the configuration provided.
+- can show different Components based on the routes.
+reacr-router-dom
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+createBrowserRouter([]) => List of objects where each object represents the route configuration.
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+]);
+RouterProvider => will gives all of the configuration to the react application.
+<RouterProvider router={router}></RouterProvider
+
+- react-router-dom gives a beautiful error page by default for mismatch routes but further it also provides useError() hook for giving additional.
+
+import { useRouteError } from "react-router-dom";
+const ErrorPage = () => {
+  const err = useRouteError();
+  return (
+    <div>
+      <h1>Oop's something went wrong</h1>
+        <h3>{err.status} :: {err.error.message}</h3>
+    </div>
+  );
+};
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+nested routing :
+ 
+ - we can nest the routes as we wants by adding childern list in the configuration of createBrowserRouter.
+ 
+ Outlet -> is a component provided by react-router-dom to handle nested routes and selecting the component as route changes.
+
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
+ const AppLayout = () => (
+  <div>
+    <div className="container">
+      <Header />
+      <Outlet />
+    </div>
+  </div>
+);
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      ,
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+    ],
+    errorElement: <ErrorPage />,
+  },
+]);
+
+2 types of routing in webapp
+
+ - Client side routing => No need to make a network call react will replace the component without refreshing the entire page takes react to work as SPA.
+
+ - Server side routing => take a network call and requset the html page from server and on response load the page.
+
+
+Link => component provided by react-router-dom to link the route with the components, internally uses anchor tag.
+
+useParam() => hook provided by react-router-dom to fetch the dynamic path of the url.
+================================================================================================================================================
