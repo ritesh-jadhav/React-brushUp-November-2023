@@ -257,4 +257,18 @@ const router = createBrowserRouter([
 Link => component provided by react-router-dom to link the route with the components, internally uses anchor tag.
 
 useParam() => hook provided by react-router-dom to fetch the dynamic path of the url.
+
+useRouteError() => can gives error information of the routes. 
 ================================================================================================================================================
+
+Class based componenet: palin java class
+
+class Component_name extends React.componenet{
+  Component_name(props){
+    super(props) // will call constructor of React.componenet and mount the props
+  }
+  render()  // to render on UI
+  {
+    return <> </>
+  }
+}
