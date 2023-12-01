@@ -1,3 +1,6 @@
+
+Virtual DOM -> plain javascript that deals with object and manipulate them inside DOM.
+
 React.createElement => object => HtmlElement(render)
 
 const heading = React.createElement("h1",{id: "heading"},"React element");
@@ -261,10 +264,21 @@ useParam() => hook provided by react-router-dom to fetch the dynamic path of the
 useRouteError() => can gives error information of the routes. 
 ================================================================================================================================================
 
-Class based componenet: palin java class
+- Class based componenet: palin java class
 
 class Component_name extends React.componenet{
-  Component_name(props){
+ 
+  render()  // to render on UI
+  {
+    return <> </>
+  }
+}
+
+- passing props :
+
+class Component_name extends React.componenet{
+ 
+ constructor(props){
     super(props) // will call constructor of React.componenet and mount the props
   }
   render()  // to render on UI
@@ -272,3 +286,86 @@ class Component_name extends React.componenet{
     return <> </>
   }
 }
+note : in class based components props are accessed via keyword 
+
+- creating state varaible 
+state variables are create while instantiate the object.
+we always create state variable inside constructor with state and this keyword.
+
+constructor(props) {
+    super(props);
+
+    this.state = {
+      //this object contains the list of state variable 
+    };
+  }
+
+- Updating state variable 
+ <button
+          onClick={() => {
+            this.setState({
+              count: this.state.count + 1,
+            });
+          }}
+        >
+          Increase count
+  </button>
+whenever state variable updates, react will trigger reconciliation(re-render) and finds the differece of values and update the state. 
+-this.setState() require the object which having updated values and while updating the state variable only updated values are udpated without touching rest of the values.
+
+- Component lifecycle
+
+Mount/Render -> the process of loading componenet into the browser's DOM.
+lifecycle methods executes on instantiation of class.
+
+render() -> returns piece of JSX code.
+constructor() -> to pass the props and handling state management.
+componentDidMount() -> useful for api calls.
+
+- why api calls always inside componentDidMount()?
+-> to fetch the data, internally render() method will executes before componentDidMount() and in render method we will render the 
+component with the content we have and after that will load the data into component.
+
+-Order of execution for component without child
+constructor -> render() -> componentDidMount
+
+-Order of execution for component with one child
+parent-constructor
+parent-render
+child-constructor
+child-render
+child-component-did-mount
+parent-component-did-mount
+
+lifecycle methods follows parent-child relationship.
+
+- Order of execution if componenet having multiple childs
+
+parent constructor
+parent render
+
+first constructor
+first render
+
+second constructor
+second render
+
+<single-batch : DOM Update>
+first component-did-mount
+second component-did-mount
+parent component-did-mount
+
+React is having two states to mount a componenet inside dom 
+- Render stage -> constructor and render() will executes 
+- Commit stage -> once render stage is completed dom is getting updated and react will optimize the componenet mounting by 
+                batching up componentDidMount() together and perform dom operation in single go that makes react very faster.
+
+componentWillUnmount() -> will executes when component is unmounting (detached from html)
+componenetDidUpdate () -> will execute when react trigeers re-rendera and updating virtual dom.
+
+- Three stages 
+  -Mount -> constructor and render will execute 
+  -Update -> find diff and update dom.on change of props,state,forceUpdate again render will executes 
+  -Unmount ->  umounting from dom
+
+React lifecycle diagram :: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/

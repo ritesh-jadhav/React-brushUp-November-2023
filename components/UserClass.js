@@ -3,31 +3,37 @@ import React from "react";
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      count: 0,
+      userInfo: {
+        name: "name",
+        phone: "phone",
+        email: "email",
+      },
     };
   }
 
+  componentDidUpdate() {
+    console.log("component is updating");
+  }
+  async componentDidMount() {
+    const respose = await fetch("https://jsonplaceholder.typicode.com/users");
+    const data = await respose.json();
+    console.log(data);
+    this.setState({
+      userInfo: data[0],
+    });
+  }
+
+  componentWillUnmount() {
+    console.log("unmounting");
+  }
   render() {
-    const { name, company, location } = this.props;
-    const { count } = this.state;
+    const { name, phone, email } = this.state.userInfo;
     return (
       <div className="user-card">
-        <h1>Count : {count} </h1>
-        <button
-          onClick={() => {
-            console.log("clicked");
-            this.setState({
-              count: this.state.count + 1,
-            });
-          }}
-        >
-          Increase count
-        </button>
         <h4>Name : {name}</h4>
-        <h5>Works at : {company}</h5>
-        <h5>Location : {location}</h5>
+        <h5>contact : {phone}</h5>
+        <h5>email : {email}</h5>
       </div>
     );
   }
