@@ -13,19 +13,19 @@ class UserClass extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("component is updating");
+ //   console.log("component is updating");
   }
   async componentDidMount() {
     const respose = await fetch("https://jsonplaceholder.typicode.com/users");
     const data = await respose.json();
-    console.log(data);
+    //console.log(data);
     this.setState({
       userInfo: data[0],
     });
   }
 
   componentWillUnmount() {
-    console.log("unmounting");
+   // console.log("unmounting");
   }
   render() {
     const { name, phone, email } = this.state.userInfo;

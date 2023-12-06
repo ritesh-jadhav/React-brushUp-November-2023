@@ -369,3 +369,17 @@ componenetDidUpdate () -> will execute when react trigeers re-rendera and updati
   -Unmount ->  umounting from dom
 
 React lifecycle diagram :: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+===============================================================================================================================================
+
+Benifits of Single responsibilty pattern ::
+  - Modularize code 
+  - Testable and maintainable code
+  - Easy to tarck and trace the issue 
+  - Helps in debugging
+
+
+Custom hook -> simple utility javascript function/helper function
+
+By creating custom hook we can seperate the responsibility.
+
+Use case : can seperate fetching logic from the component so component will responsible for only rendering data on UI.

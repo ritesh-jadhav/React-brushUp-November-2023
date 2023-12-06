@@ -15,11 +15,11 @@ class About extends Component {
     return (
       <div>
         <h1>About page</h1>
-        <UserClass
+        {/* <UserClass
           name={"first"}
           company={"Expleo"}
           location={"Mumbai"}
-        />
+        /> */}
       </div>
     );
   }
