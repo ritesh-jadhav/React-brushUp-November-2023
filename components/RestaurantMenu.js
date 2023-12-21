@@ -11,10 +11,10 @@ const RestaurantMenu = () => {
 
   if (menuItems === null) return <Shimmer />;
 
-  const { name, cuisines, avgRating } = menuItems?.cards[0]?.card?.card?.info;
+  const { name, cuisines, avgRating } = menuItems?.cards[2]?.card?.card?.info;
 
   const { itemCards } =
-    menuItems?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
+    menuItems?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
       ?.card;
 
   return (

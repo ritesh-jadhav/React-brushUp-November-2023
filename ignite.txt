@@ -383,3 +383,28 @@ Custom hook -> simple utility javascript function/helper function
 By creating custom hook we can seperate the responsibility.
 
 Use case : can seperate fetching logic from the component so component will responsible for only rendering data on UI.
+
+Optimization :
+
+By default budler wrap all the code together in one html,js,css file and loads these files forms the application inside the browser.
+but in large apllication may one componenet having thousands of child and that can be loaded irrespective of their need.
+
+lazy loading -> on demand code populates i.e. when we goes to specific component only that time the code will loaded inside the 
+              browser that will optimize the app in better way 
+
+import React, { lazy, Suspense } from "react";
+
+const Grocery = lazy(() => import("./components/Grocery")); //callback function that will call import function (not module its function for lazy)
+that takes the path from where componenet is coming.
+
+Whenever we need componenet gets load lazyly the componenet should be wrapped inside the Suspense.
+
+<Suspense> -> provided by react library having capability to load componenet laziely. able to inject code dynamically inside existing code.
+{
+  path: "/grocery",
+  element: (
+    <Suspense>
+      <Grocery />
+    </Suspense>
+  ),
+}

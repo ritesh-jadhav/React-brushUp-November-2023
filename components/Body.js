@@ -4,6 +4,7 @@ import Card from "./Card";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [resturantList, setRestaurantList] = useState([]);
@@ -15,6 +16,14 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const onlineStatus = useOnline();
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Looks like you are offline...please check the internet connection!
+      </h1>
+    );
 
   const fetchData = async () => {
     const apiData = await fetch(
