@@ -2,28 +2,29 @@ import { useState } from "react";
 import { logoImage } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+
 const Header = () => {
   const [btnValue, setBtnValue] = useState("login");
   const onlineStatus = useOnline();
-  console.log("You are online ",onlineStatus)
+  console.log("You are online ", onlineStatus);
   return (
-    <div className="header">
+    <div className="flex bg-pink-300 justify-between shadow-xl m-2">
       <div className="logo">
-        <img src={logoImage} alt="logo" className="logo-image" />
+        <img className="w-48" src={logoImage} alt="logo" />
       </div>
-      <div className="nav-link">
-        <ul className="nav-link-list">
-          <li>online: {onlineStatus ? "✅" : "🛑"}</li>
-          <li className="nav-items">
+      <div className="p-4 m-4 flex">
+        <ul className="items-center flex">
+          <li className="px-4">online: {onlineStatus ? "✅" : "🛑"}</li>
+          <li className="px-4">
             <Link to="/about">About us</Link>
           </li>
-          <li className="nav-items">
+          <li className="px-4">
             <Link to="/grocery">Groceries</Link>
           </li>
-          <li className="nav-items">
+          <li className="px-4">
             <Link to="/contact">Contact</Link>
           </li>
-          <li className="nav-items">Cart</li>
+          <li className="px-4">Cart</li>
           <button
             className="login-btn"
             onClick={() => {

@@ -377,7 +377,7 @@ Benifits of Single responsibilty pattern ::
   - Easy to tarck and trace the issue 
   - Helps in debugging
 
-
+=====================================================================================================================================
 Custom hook -> simple utility javascript function/helper function
 
 By creating custom hook we can seperate the responsibility.
@@ -390,7 +390,7 @@ By default budler wrap all the code together in one html,js,css file and loads t
 but in large apllication may one componenet having thousands of child and that can be loaded irrespective of their need.
 
 lazy loading -> on demand code populates i.e. when we goes to specific component only that time the code will loaded inside the 
-              browser that will optimize the app in better way 
+              browser that will optimize the app in better way and can reduce the bundle size.
 
 import React, { lazy, Suspense } from "react";
 
@@ -400,11 +400,26 @@ that takes the path from where componenet is coming.
 Whenever we need componenet gets load lazyly the componenet should be wrapped inside the Suspense.
 
 <Suspense> -> provided by react library having capability to load componenet laziely. able to inject code dynamically inside existing code.
+fallback -> attribute that can used by react while componenet is loading react needs something to renedr on screen expect JSX.
+
+
 {
   path: "/grocery",
   element: (
-    <Suspense>
+    <Suspense fallback={<h1>Loading</h1>}>
       <Grocery />
     </Suspense>
   ),
 }
+
+
+lazy loding acronyms -> 
+  Chunnkking 
+  Code splitting
+  Dynamic import
+  Dynamic Bundling
+  on demand loading
+===========================================================================================================================================
+
+Higher order Component -> a normal js utility function that accept the component and returns the component with the enchanment/modification.
+
