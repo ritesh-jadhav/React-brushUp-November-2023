@@ -423,3 +423,8 @@ lazy loding acronyms ->
 
 Higher order Component -> a normal js utility function that accept the component and returns the component with the enchanment/modification.
 
+Controlled componenet -> a state can be managed by its parent or rendering of the component controlled by its parent.
+Uncontrolled component -> a state and rendering managed by component itself.
+
+
+Lifting state up -> updating the state of the parent by its child (not possible directly but indirectly we can do it) 
