@@ -1,6 +1,6 @@
 import dummyData from "../utils/mockData";
 import { swiggyCdn } from "../utils/constants";
-import Card from "./Card";
+import Card, { withPromotedLabel } from "./Card";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -11,8 +11,8 @@ const Body = () => {
   const [filteredList, setFilteredList] = useState([]);
 
   const [searchText, setSearchText] = useState("");
-
-  console.log("Body rendered");
+  const PromotedCard = withPromotedLabel(Card);
+  console.log("Body rendered", resturantList);
   useEffect(() => {
     fetchData();
   }, []);
@@ -63,7 +63,7 @@ const Body = () => {
         />
         <button
           type="button"
-          className="bg-green-500 m-2 px-2 rounded-xl" 
+          className="bg-green-500 m-2 px-2 rounded-xl"
           onClick={() => {
             const searchList = resturantList.filter((restro) =>
               restro.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -91,11 +91,19 @@ const Body = () => {
       <div className="flex flex-wrap">
         {filteredList.map((restro) => (
           <Link to={"/restaurant/" + restro.info?.id} key={restro.info?.id}>
-            <Card
+           { restro?.info?.promoted 
+            ?
+            <PromotedCard
               name={restro?.info?.name}
               avgRating={restro?.info?.avgRating}
               cloudinaryImageId={swiggyCdn + restro?.info?.cloudinaryImageId}
             />
+            :
+            <Card
+              name={restro?.info?.name}
+              avgRating={restro?.info?.avgRating}
+              cloudinaryImageId={swiggyCdn + restro?.info?.cloudinaryImageId}
+            />}
           </Link>
         ))}
       </div>
