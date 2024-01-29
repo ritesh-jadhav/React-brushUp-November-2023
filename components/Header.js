@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { logoImage } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btnValue, setBtnValue] = useState("login");
   const onlineStatus = useOnline();
-  console.log("You are online ", onlineStatus);
+  const {loggedinUser} = useContext(UserContext);
   return (
     <div className="flex bg-pink-300 justify-between shadow-xl m-2">
       <div className="logo">
@@ -25,6 +26,8 @@ const Header = () => {
             <Link to="/contact">Contact</Link>
           </li>
           <li className="px-4">Cart</li>
+
+          <li className="px-4">{loggedinUser}</li>
           <button
             className="login-btn"
             onClick={() => {

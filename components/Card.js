@@ -1,4 +1,10 @@
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
+
 const Card = ({ name, avgRating, cloudinaryImageId }) => {
+
+  const {loggedinUser} = useContext(UserContext);
+
   return (
     <div className="p-4 m-4 bg-red-500 w-[250px] rounded-xl shadow-xl">
       
@@ -13,6 +19,7 @@ const Card = ({ name, avgRating, cloudinaryImageId }) => {
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, rem!
         </p>
+        <p>Hello User : {loggedinUser} </p>
       </div>
     </div>
   );

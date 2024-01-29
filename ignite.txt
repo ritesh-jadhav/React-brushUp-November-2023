@@ -427,4 +427,39 @@ Controlled componenet -> a state can be managed by its parent or rendering of th
 Uncontrolled component -> a state and rendering managed by component itself.
 
 
-Lifting state up -> updating the state of the parent by its child (not possible directly but indirectly we can do it) 
+Lifting state up -> updating the state of the parent by its child (not possible directly but indirectly we can do it) via props drilling 
+
+Props drilling -> passing the props down to the nested children in componenet tree hirarchy.
+
+Problem with props drilling -> multiple nesting is not the good way to passing the props from every componenet waste of use.
+
+React context -> A Global storage area for the data so any componenet can tap to global storage area and can access the data where it needed.
+  
+  1. Creating context : createContext() -> simple utility js function provided by react library that holds an object and that object contains the central data.
+
+  import { createContext } from "react";
+
+  const UserContext = createContext({
+    loggedinUser : "default user"
+    }) 
+ 
+  export default UserContext;
+-----------------------------------   Consuming context   -----------------------------
+  2. Consuming / Using the Context : useContext() -> hook provided by react that takes a context as a parameter.
+    - Functional componenet
+    
+
+    const {loggedinUser} = useContext(UserContext);
+
+  - Class-based component :
+    hooks are not allowded in class based componenet but react provides a special componenet to consume the context  -> JSX -> callback function that contains actual data 
+    
+        <UserContext.Consumer>
+          {(data) => <h1>{data.loggedinUser}</h1> }
+        </UserContext.Consumer>
+  
+      react will taking care of providing context data to the callback.
+
+---------------------------------   Providing Context   ------------------------------------
+
+

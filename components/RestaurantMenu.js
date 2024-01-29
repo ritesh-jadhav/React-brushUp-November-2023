@@ -2,14 +2,14 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurntMenu from "../utils/useRestaurntMenu";
 import MenuItemCategory from "./MenuItemCategory";
-import {useState}  from "react";
+import {useContext, useState}  from "react";
+import UserContext from "../utils/UserContext";
 
 const RestaurantMenu = () => {
   const { restId } = useParams();
   const[showIndex,setShowIndex] = useState(0);
   const menuItems = useRestaurntMenu(restId);
    
-
   if (menuItems === null) return <Shimmer />;
 
   const { name, cuisines, avgRating } = menuItems?.cards[2]?.card?.card?.info;
@@ -24,7 +24,7 @@ const RestaurantMenu = () => {
         category?.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
-  console.log(MenuCategory);
+    
   return (
     <div className="restro-menu-card">
       <h3 className="font-bold text-xl text-center my-6">{name}</h3>
