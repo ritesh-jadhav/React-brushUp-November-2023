@@ -1,10 +1,11 @@
-import dummyData from "../utils/mockData";
 import { swiggyCdn } from "../utils/constants";
 import Card, { withPromotedLabel } from "./Card";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import UserClass from "./UserClass";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [resturantList, setRestaurantList] = useState([]);
@@ -18,6 +19,9 @@ const Body = () => {
   }, []);
 
   const onlineStatus = useOnline();
+
+  const { loggedinUser, setUserName } = useContext(UserContext);
+
   if (onlineStatus === false)
     return (
       <h1>
@@ -87,23 +91,30 @@ const Body = () => {
         >
           Top reated restaurant
         </button>
+        <label className="p-2 m-2">User : </label>
+        <input
+          type="text"
+          className="px-2 m-2 border border-black"
+          value={loggedinUser}
+          onChange={(e) => setUserName(e.target.value)}
+        />
       </div>
       <div className="flex flex-wrap">
         {filteredList.map((restro) => (
           <Link to={"/restaurant/" + restro.info?.id} key={restro.info?.id}>
-           { restro?.info?.promoted 
-            ?
-            <PromotedCard
-              name={restro?.info?.name}
-              avgRating={restro?.info?.avgRating}
-              cloudinaryImageId={swiggyCdn + restro?.info?.cloudinaryImageId}
-            />
-            :
-            <Card
-              name={restro?.info?.name}
-              avgRating={restro?.info?.avgRating}
-              cloudinaryImageId={swiggyCdn + restro?.info?.cloudinaryImageId}
-            />}
+            {restro?.info?.promoted ? (
+              <PromotedCard
+                name={restro?.info?.name}
+                avgRating={restro?.info?.avgRating}
+                cloudinaryImageId={swiggyCdn + restro?.info?.cloudinaryImageId}
+              />
+            ) : (
+              <Card
+                name={restro?.info?.name}
+                avgRating={restro?.info?.avgRating}
+                cloudinaryImageId={swiggyCdn + restro?.info?.cloudinaryImageId}
+              />
+            )}
           </Link>
         ))}
       </div>

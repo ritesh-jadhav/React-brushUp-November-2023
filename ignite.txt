@@ -462,4 +462,20 @@ React context -> A Global storage area for the data so any componenet can tap to
 
 ---------------------------------   Providing Context   ------------------------------------
 
+<contextName.provider value={ }>
+  ** only components  that are in between context provider have access the context value**
+</contextName.provider>
+
+e.g. 
+ //default value of context 
+<UserContext.Provider value={{ loggedinUser: userName }}>
+//userName
+    <div className="app">
+      <UserContext.Provider value={{ loggedinUser: "Elon Musk" }}>
+      //Elon Musk
+        <Header />
+      </UserContext.Provider>
+      <Outlet />
+    </div>
+</UserContext.Provider>
 
