@@ -478,4 +478,21 @@ e.g.
       <Outlet />
     </div>
 </UserContext.Provider>
+===================================================================================================================================
+Redux -> a predictible state container library 
+Redux team will provide 2 liberaries - React-Redux and Redux ToolKit(RTK)
 
+Redux Toolkit is a modern way to use redux.
+  ToolKit is minimizing the boiler plate code, configuration of redux and avoid a lot packages to get redux into the application.
+
+zustand is an alternative for redux and lot of peoples using this.
+
+Architecture
+  Store -> a huge js object consist of a lot of data and kept into global storage of data layer so any componenet can access it.
+  Slices -> Logical piece of the data i.e. logical data sepration 
+
+Whenever we need to add/update something inside the redux we cannot directly modify. for doing this, we have to "dispatch an (Action)"  it will trigger the function
+and that function internally modify the "slice" of the redux store .that function is called as "reducer".
+
+Whenever we need to read data from the store we use "selector". selector is subscribing the store to the componenet so as soon as data updated inside slice of the store 
+and component will get the same from the store.
