@@ -496,3 +496,102 @@ and that function internally modify the "slice" of the redux store .that functio
 
 Whenever we need to read data from the store we use "selector". selector is subscribing the store to the componenet so as soon as data updated inside slice of the store 
 and component will get the same from the store.
+
+
+Redux toolkit 
+  1. Installation = npm i  @reduxjs/toolkit and npm i react-redux
+  2. Configuring store =
+  3. establish connection between store and application 
+  4. creating slice 
+  5. Dispatch(Action)
+  6. Selector(subscribing)
+
+
+Configuring store 
+
+                  import { configureStore } from "@reduxjs/toolkit";
+
+                  const appStore = configureStore({});
+
+                  export default appStore;
+
+
+establish connection 
+
+      import { Provider } from "react-redux";
+
+    <Provider store={appStore}>     - will allow the access store for the in between componenet
+      <---componenet----> //Header
+      <---componenet---->//body
+    </Provider>
+      <---componenet---->//foothr -> footer can't access store
+
+
+
+create slice ->
+
+ createSlice({                 
+    name: "" 
+    initialState : {},
+    reducers: () =>{
+      action_name1 (state,action)
+      {
+        as soon as action is dispatch -> access the initial state and updates the initial state by the payload 
+      },
+      action_name2 (state,action) 
+      {
+        as soon as action is dispatch -> access and updates the the initial state by the payload
+      },
+      action_name3 (state,action)
+      {
+        as soon as action is dispatch -> access and updates  the initial state by the payload
+      }
+    } 
+} )
+
+
+
+export action;
+
+export reducers;
+----------------------------------------------
+const { createSlice } = require("@reduxjs/toolkit");
+
+const cartSlice = () =>
+  createSlice({
+    name: "cart",
+    initialState: {
+      items: [],
+    },
+    reducers: {
+      addItem: (state, action) => {
+        state.items.push(items.push(action.payload));
+      },
+      removeItem: (state) => {
+        state.items.pop(items.pop());
+      },
+      clearCart: (state)=>{
+        state.items.length = 0;
+      }
+
+    },
+  });
+export const {addItem,removeItem,clearCart} = cartSlice.reducers;
+
+export default cartSlice.reducers;
+
+
+-----------------
+
+finsihing cfg 
+
+
+import { configureStore } from "@reduxjs/toolkit";
+import cartReducer from "./cartSlice";
+const appStore = configureStore({
+  reducers: {            // reducer 
+    cart: cartReducer,  //reducer for the slice of store
+  },
+});
+
+export default appStore;

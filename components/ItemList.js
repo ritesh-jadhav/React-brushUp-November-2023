@@ -17,6 +17,10 @@ const ItemList = ({ items }) => {
           <div>
             <img src={swiggyCdn + item.card.info.imageId} alt="" />
           </div>
+          <div className="flex justify-center">
+
+            <button className="p-2 m-2 bg-black text-white border-white rounded-md ">Add</button>
+          </div>
         </div>
       ))}
     </div>
