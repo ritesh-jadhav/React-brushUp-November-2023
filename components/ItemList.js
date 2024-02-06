@@ -1,7 +1,14 @@
+import { useDispatch } from "react-redux";
 import { swiggyCdn } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
-  console.log("items", items);
+  const dispatch = useDispatch();
+
+  const addItemHandler = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -18,8 +25,12 @@ const ItemList = ({ items }) => {
             <img src={swiggyCdn + item.card.info.imageId} alt="" />
           </div>
           <div className="flex justify-center">
-
-            <button className="p-2 m-2 bg-black text-white border-white rounded-md ">Add</button>
+            <button
+              className="p-2 m-2 bg-black text-white border-white rounded-md"
+              onClick={() => addItemHandler(item)}
+            >
+              Add
+            </button>
           </div>
         </div>
       ))}

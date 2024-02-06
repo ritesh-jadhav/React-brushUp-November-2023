@@ -595,3 +595,45 @@ const appStore = configureStore({
 });
 
 export default appStore;
+
+---------------------------
+reading data from store
+   const  name =  useSelector ( (store) => part of slice than can be access by subscribing to the component ) 
+
+e.g.
+  import { useSelector } from "react-redux";
+   const cartItem = useSelector((store) => store.cart.items );
+---------------------------
+
+Dispatch action :
+
+  const dispatch = useDispatch();
+
+  const addItemHandler = (item) =>{
+    dispatch(addItem(item))          // dispatch(action(payload))
+  }
+
+-------------- 
+
+Valinilla redux/older way : DON"T MUTED THE STATE             // Redux toolkit behind the scene manage everything mutating/updateing & returning the state by using internally immer library 
+  // state : {...items}               
+  // new state : state.element 
+  // return new state
+
+logging state :
+
+ const { createSlice,current } = require("@reduxjs/toolkit");
+  
+ const slice_name ={
+  ------ 
+  reducers: {
+      addItem: (state, action) => {
+        console.log(state) // won't work redux cretes proxy object
+        console.log(current(state)) 
+        state.items.push(items.push(action.payload));
+      },
+  }
+  ----
+  }
+  ================================================================================================
+  
