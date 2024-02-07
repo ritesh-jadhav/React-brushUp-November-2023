@@ -636,4 +636,59 @@ logging state :
   ----
   }
   ================================================================================================
+
+                            Testing (As a developer)
   
+  1. Unit testing -> single unit is tested under usolation of application. (No matter other system/seervice may impact)
+  2. Integration testing -> a entire flow is tested. (Flow followed by the business logic what we developed through code)
+  3. End-to-End testing/e2e -> from entering to leaving the page as a end-user.
+
+--------------------------------
+Testing react app: 
+
+
+React testing library -> build on topf of  DOM testing library 
+Jest Framework -> react testing library using jest -> jest internally usags babel
+
+Steps:
+
+1. Installing react testing library -> npm install --save-dev @testing-library/react
+2. Installing jest -> npm install --save-dev jest
+3. Installing babel deps -> npm install --save-dev babel-jest @babel/core @babel/preset-env
+4. babel configuration
+
+babel.config.js
+module.exports = {
+  presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
+};
+
+As parcal internally usages babel and as we have additional babel cfg parcal gets conflict so we need to change its behaviour
+
+5. exlude default behaviour -   To disable Babel transpilation in Parcel, override the default Parcel config
+
+.parcelrc
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{js,mjs,jsx,cjs,ts,tsx}": [
+      "@parcel/transformer-js",
+      "@parcel/transformer-react-refresh-wrap"
+    ]
+  }
+}
+
+6. Jest cfg 
+
+PS C:\Users\Ritesh J\OneDrive\Desktop\React-brushUp November 2023> npx jest --init
+
+The following questions will help Jest to create a suitable configuration for your project
+
+√ Would you like to use Typescript for the configuration file? ... yes
+? Choose the test environment that will be used for testing » - Use arrow-keys. Return to submit.
+    node
+>   jsdom (browser-like)
+
+√ Do you want Jest to add coverage reports? ... yes
+? Which provider should be used to instrument code for coverage? » - Use arrow-keys. Return to submit.
+    v8
+>   babel
