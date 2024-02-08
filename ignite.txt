@@ -692,3 +692,7 @@ The following questions will help Jest to create a suitable configuration for yo
 ? Which provider should be used to instrument code for coverage? » - Use arrow-keys. Return to submit.
     v8
 >   babel
+
+√ Automatically clear mock calls, instances, contexts and results before every test? ... yes
+
+7. npm install --save-dev jest-environment-jsdom    for >28 version of jest
